@@ -26,8 +26,10 @@ import {
 } from "./style"
 import { ReposResponse, UserResponse } from "../../common/resources/api/users/types"
 import { HashLoader } from 'react-spinners'
+import { toast } from "react-toastify"
 
 export function UserPage() {
+  const navigate = useNavigate()
   const { username } = useParams()
 
   const [loading, setLoading] = useState(true);
@@ -37,11 +39,13 @@ export function UserPage() {
   const fetchUser = useCallback(async () => {
     try {
       const userResponse = await UserApi.getUser(username as string)
+      console.log(userResponse)
       const repoResponse = await UserApi.getRepos(username as string)
       setDataUser(userResponse)
       setRepos(repoResponse)
     } catch(e) {
-      console.log(e)
+      toast('Oops! Something went wrong!')
+      navigate('/')
     } finally{ 
       setLoading(false)
     }
