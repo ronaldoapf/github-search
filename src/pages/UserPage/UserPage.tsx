@@ -25,7 +25,6 @@ import {
   RepoDescription, 
 } from "./style"
 import { ReposResponse, UserResponse } from "../../common/resources/api/users/types"
-import { ClipLoader, HashLoader } from "react-spinners"
 
 export function UserPage() {
   const navigate = useNavigate()
@@ -54,18 +53,7 @@ export function UserPage() {
 
   if(loading) {
     return (
-      <HashLoader 
-        size={100}
-        color="#8752CC"
-        loading={loading} 
-        cssOverride={{
-          width: '100%',
-          height: '100vh',
-          display: "flex",
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      />
+      <p>Carregando...</p>
     ) 
   }
 
